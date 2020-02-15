@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <head></head>
+   <body>
+      <h2>
+         <p>Course Schedule Form</p>
+      </h2>
+
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+
+      <h2>Courses<br></h2> <h3>(<a style="color:red" href = "{{ url_for('new') }}">Schedule Course</a>)</h3>
+
+      <table bgcolor = "yellow" width = "100%">
+         <thead>
+            <tr>
+               <th>course_num</th>
+               <th>semester</th>
+               <th>time</th>
+               <th>course_name</th>
+               <th>course_level</th>
+               <th>course_des</th>
+               <th>course_prereq</th>
+               <th>instructor_num</th>
+               <th>instructor_name</th>
+               <th>instructor_BD</th>
+               <th>instructor_gender</th>
+               <th>instructor_nationality</th>
+               <th>instructor_edu</th>
+               <th>instructor_degree</th>
+               <th>instructor_bio</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for course in Courses %}
+               <tr>
+
+                  <td><a style="color:red" href="{{ url_for('Schedule') }}"> {{ course.course_num }}</a><br>
+                     <a style="color:red" href="{{ url_for('student') }}"><input type = "submit" value = "Enroll" /></a></td>
+                  <td>{{ course.semester }}</td>
+                  <td>{{ course.time }}</td>
+                  <td>{{ course.course_name }}</td>
+                  <td>{{ course.course_level }}</td>
+                  <td>{{ course.course_des }}</td>
+                  <td>{{ course.course_prereq}}</td>
+                  <td>{{ course.instructor_num}}</td>
+                  <td> <a style="color:red" href="{{ url_for('Inst') }}">{{ course.instructor_name}}</a></td>
+                  <td>{{ course.instructor_BD}}</td>
+                  <td>{{ course.instructor_gender}}</td>
+                  <td>{{ course.instructor_nationality}}</td>
+                  <td>{{ course.instructor_edu}}</td>
+                  <td>{{ course.instructor_degree}}</td>
+                  <td>{{ course.instructor_bio}}</td>
+               </tr>
+            {% endfor %}
+
+
+
+         <h3>(<a style="color:red" href="{{ url_for('Schedule') }}">Courses List</a>) </h3>
+         </tbody>
+      </table>
+
+      <br>
+      <br>
+      <div>
+
+      <form>
+         <hr/>
+         <h2 style="color:red">Students enrolled in course</h2>
+      <table bgcolor = "yellow" width = "15%">
+         <thead>
+            <tr>
+               <th>Course_num</th>
+               <th>Student name </th>
+               <th>Student id </th>
+
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for student in Student %}
+               <tr>
+
+                  <td>{{ student.course_num }}</td>
+                  <td>{{ student.student_name }}</td>
+                  <td>{{ student.studentid }}</td>
+
+
+               </tr>
+            {% endfor %}
+
+         </tbody>
+      </table>
+         </form>
+         </div>
+   </body>
+</html>
